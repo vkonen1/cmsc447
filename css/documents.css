@@ -9,3 +9,12 @@ h1 {
 p {
 	margin: 5px 0;
 }
+
+a {
+	color: gray;
+	text-decoration: none;
+}
+
+a:visited {
+	color: gray;
+}
