@@ -5,7 +5,7 @@
 
 		<!-- Google+ Sign-in required meta tags -->
 		<meta name="google-signin-scope" content="profile email">
-		<meta name="google-signin-client_id" content="355947026096-ufg6tg2lu4vjuk0nltea6tqs3cht7vcv.apps.googleusercontent.com">
+		<meta name="google-signin-client_id" content="<?php echo($google_client_id); ?>">
 		
 		<!-- JQuery Google hosted library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
@@ -13,6 +13,8 @@
 		<!-- Google+ Sign-in javascript -->
 		<script src="https://apis.google.com/js/platform.js" async defer></script>
 		
+		<!-- Set javascript variable for the google client id -->
+		<script>var google_client_id = "<?php echo($google_client_id); ?>";</script>
 		<!-- External javascript -->
 		<script src="js/index.js"></script>
 
@@ -20,8 +22,10 @@
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 	</head>
 	<body>
+		<span id="error" style="display: none;"></span>
+
 		<!-- Google+ Sign-in button -->
-		<div class="g-signin2" data-onsuccess="getUserData" data-theme="dark"></div>
+		<div class="g-signin2" data-onsuccess="onSignIn"></div>
 
 		<!-- Debug element -->
 		<div id="debug"></div>
