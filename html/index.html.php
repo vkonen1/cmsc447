@@ -22,10 +22,13 @@
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 	</head>
 	<body>
+		<!-- Used by javascript displayError -->
 		<span id="error" style="display: none;"></span>
 
 		<!-- Google+ Sign-in button -->
-		<div class="g-signin2" data-onsuccess="onSignIn"></div>
+		<div id="google-sign-in" class="g-signin2" data-onsuccess="onSignIn"></div>
+
+		<div id="user-info"></div>
 
 		<!-- Debug element -->
 		<div id="debug"></div>

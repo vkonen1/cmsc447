@@ -19,15 +19,16 @@ function onSignIn(googleUser) {
 		if (authenticated_user["aud"] == google_client_id) {
 			onUserValidated(authenticated_user);
 		} else {
-			var error = "Invalid Google User Sign-in";
-			displayError(error);
+			var err_message = "Invalid Google User Sign-in";
+			displayError(err_message);
 		}
 	}
 	xhr.send();
 }
 
 function onUserValidated(user) {
-	
+	$("#google-sign-in").hide();
+	$("#user-info").html(user.name + "'s Dashboard");
 }
 
 function onSignInDebug(googleUser) {
