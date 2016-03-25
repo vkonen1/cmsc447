@@ -3,7 +3,7 @@ function displayError(message, timeout = 5000) {
 	$("#error").show();
 	setTimeout(function() {
 		$("#error").hide();
-	}, timeout);;
+	}, timeout);
 }
 
 function onSignIn(googleUser) {
