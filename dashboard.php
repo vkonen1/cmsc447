@@ -15,7 +15,7 @@ $id_token = $_POST["id_token"];
 
 //setup the google client
 $client = new Google_Client();
-$client->setApplicationName($config["google_application_name"]);
+$client->setApplicationName($config["application_name"]);
 $client->setClientId($config["google_client_id"]);
 
 //check for id_token validity
