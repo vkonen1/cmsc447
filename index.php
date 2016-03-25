@@ -35,7 +35,11 @@ if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
 //get the data associated with the token
 if ($client->getAccessToken()) {
 	$_SESSION['access_token'] = $client->getAccessToken();
-	$token_data = $client->verifyIdToken()->getAttributes();
+	try {
+		$token_data = $client->verifyIdToken()->getAttributes();		
+	} catch (Exception $e) {
+		echo "caught " . $e->getMessage();
+	}
 }
 
 //dump the user data
