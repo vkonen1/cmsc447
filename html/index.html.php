@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Auto Grader</title>
+		<title><?php echo($config['application_name']); ?> Login</title>
 
 		<!-- Google+ Sign-in required meta tags -->
 		<meta name="google-signin-scope" content="profile email">
-		<meta name="google-signin-client_id" content="<?php echo($google_client_id); ?>">
+		<meta name="google-signin-client_id" content="<?php echo($config['google_client_id']); ?>">
 		
 		<!-- JQuery Google hosted library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
@@ -13,24 +13,20 @@
 		<!-- Google+ Sign-in javascript -->
 		<script src="https://apis.google.com/js/platform.js" async defer></script>
 		
-		<!-- Set javascript variable for the google client id -->
-		<script>var google_client_id = "<?php echo($google_client_id); ?>";</script>
-		<!-- External javascript -->
+		<!-- External javascripts -->
+		<script src="js/base.js"></script>
 		<script src="js/index.js"></script>
 
 		<!-- External CSS -->
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 	</head>
 	<body>
-		<!-- Used by javascript displayError -->
-		<span id="error" style="display: none;"></span>
-
 		<!-- Google+ Sign-in button -->
 		<div id="google-sign-in" class="g-signin2" data-onsuccess="onSignIn"></div>
 
-		<div id="user-info"></div>
-
-		<!-- Debug element -->
-		<div id="debug"></div>
+		<!-- Form to provide post data for login -->
+		<form id="login" action="dashboard.php" method="post" name="login">
+			<input id="id-token" type="hidden" name="id_token" value="" />
+		</form>
 	</body>
 </html>
