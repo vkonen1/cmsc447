@@ -1,6 +1,6 @@
 function displayError(message, timeout = 5000) {
 	$("#error").html(message);
-	$("#error").show()
+	$("#error").show();
 	setTimeout(function() {
 		$("#error").hide();
 	}, timeout);;
