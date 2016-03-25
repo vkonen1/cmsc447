@@ -38,7 +38,7 @@ if ($client->getAccessToken()) {
 	try {
 		$token_data = $client->verifyIdToken()->getAttributes();		
 	} catch (Exception $e) {
-		echo "caught " . $e->getMessage();
+		
 	}
 }
 
