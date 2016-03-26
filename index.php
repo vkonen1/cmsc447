@@ -28,18 +28,9 @@ if (isset($_GET['code'])) {
 //set the access token for requests, otherwise generate an authentication url
 if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
 	$client->setAccessToken($_SESSION['access_token']);
+	$token_data = $client->verifyIdToken()->getAttributes();
 } else {
 	$authUrl = $client->createAuthUrl();
-}
-
-//get the data associated with the token
-if ($client->getAccessToken()) {
-	$_SESSION['access_token'] = $client->getAccessToken();
-	try {
-		$token_data = $client->verifyIdToken()->getAttributes();		
-	} catch (Exception $e) {
-		
-	}
 }
 
 //dump the user data
