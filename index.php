@@ -10,7 +10,7 @@ $client->setApplicationName($config["application_name"]);
 $client->setClientId($config["google_client_id"]);
 $client->setClientSecret($config["google_client_secret"]);
 $client->setRedirectUri($config["google_client_redirect"]);
-$client->setScopes('profile');
+$client->setScopes('email');
 
 //clear local access token on logout
 if (isset($_REQUEST['logout'])) {
