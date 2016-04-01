@@ -35,8 +35,7 @@ if ($num_results < 1) {
 
 //get the user's info from the query
 $user_info = mysql_fetch_assoc($result);
-
-var_dump($user_info);
+$username = str_replace("@umbc.edu", "", $user_info["Email"]);
 
 require("html/dashboard.html.php");
 ?>
