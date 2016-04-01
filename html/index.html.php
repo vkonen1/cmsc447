@@ -10,6 +10,7 @@
 		<script src="js/base.js"></script>
 
 		<!-- External CSS -->
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 	</head>
 	<body>
