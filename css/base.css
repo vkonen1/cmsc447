@@ -39,6 +39,43 @@ body {
 }
 /* end page background */
 
+/* logout button */
+#logout {
+	height: 50px;
+	width: 121px;
+
+	position: absolute;
+	right: 15px;
+	top: 15px;
+}
+#logout > p {
+	display:table-cell;
+	height: 50px;
+	width: 121px;
+
+	margin: 0;
+	vertical-align: middle;
+
+	color: #2F363D;
+	text-align: center;
+}
+#logout > p > a {
+
+	padding: 15px 30px;
+	border-radius: 10px;
+
+	background-color: #9FABB7;
+	color: inherit;
+	text-decoration: none;
+	font-size: 18px;
+	line-height: 20px;
+	font-weight: bold;
+}
+#logout > p > a:hover {
+	background-color: #BBBB77;
+}
+/* end logout button */
+
 /* page header */
 h1 {
 	margin: 15px 0;
