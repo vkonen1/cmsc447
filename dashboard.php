@@ -6,7 +6,7 @@ if (!isset($token_data)) {
 	header("Location: index.php");
 }
 
-$google_id = $token_data["sub"];
+$google_id = $token_data["payload"]["sub"];
 
 //mysql server connection info
 $server = "localhost";
@@ -29,8 +29,8 @@ if (!$result) {
 
 //kick them out if they don't belong
 $num_results = mysql_num_rows($result);
-if ($num_results != 1) {
-	header("Location: index.php");
+if ($num_results < 1) {
+	header("Location: access_denied.php");
 }
 
 //get the user's info from the query
