@@ -16,6 +16,6 @@
 	<body>
 		<div id="logout"><p><a href="logout.php">Logout</a></p></div>
 		<h1><?php echo($config['application_name']); ?></h1>
-		
+		<h2>Dashboard</h2>
 	</body>
 </html>

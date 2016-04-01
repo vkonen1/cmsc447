@@ -15,6 +15,7 @@
 	</head>
 	<body>
 		<h1><?php echo($config['application_name']); ?></h1>
+		<h2>Welcome</h2>
 		<div id="login">
 			<p>
 				<?php if (isset($authUrl)) { ?>
