@@ -6,5 +6,5 @@ if (isset($token_data)) {
 	header("Location: dashboard.php");
 }
 
-include("html/index.html.php");
+require("html/index.html.php");
 ?>
