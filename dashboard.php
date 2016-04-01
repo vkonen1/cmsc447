@@ -1,5 +1,5 @@
 <?php
 require("login.php");
 
-require("dashboard.html.php");
+require("html/dashboard.html.php");
 ?>
