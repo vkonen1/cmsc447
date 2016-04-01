@@ -13,10 +13,9 @@
 		<link rel="stylesheet" type="text/css" href="css/index.css" />
 	</head>
 	<body>
+		<h1><?php echo($config['application_name']); ?></h1>
 		<?php if (isset($authUrl)) { ?>
 			<a class="login" href="<?php echo($authUrl); ?>">Sign in to Google+</a>
-		<?php } else { ?>
-			<a class="logout" href="?logout">Logout</a>
 		<?php } ?>
 	</body>
 </html>
