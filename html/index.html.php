@@ -14,8 +14,12 @@
 	</head>
 	<body>
 		<h1><?php echo($config['application_name']); ?></h1>
-		<?php if (isset($authUrl)) { ?>
-			<a class="login" href="<?php echo($authUrl); ?>">Sign in to Google+</a>
-		<?php } ?>
+		<div id="login">
+			<p>
+				<?php if (isset($authUrl)) { ?>
+				<a href="<?php echo($authUrl); ?>">Login through Google+</a>
+				<?php } ?>
+			</p>
+		</div>
 	</body>
 </html>

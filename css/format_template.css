@@ -1,0 +1,39 @@
+#css_format_template {
+	/* display */
+	cursor
+	display
+	overflow
+	transform
+
+	/* sizing */
+	height
+	width
+
+	/* positioning */
+	clear
+	position
+	float
+	left
+	top
+	vertical-align
+	z-index
+
+	/* background */
+	background
+	background-color
+
+	/* padding, border, margin */
+	padding
+	border
+	border-color
+	border-radius
+	margin
+
+	/* text formatting */
+	color
+	text-align
+	line-height
+	font-family
+	font-size
+	font-weight
+}

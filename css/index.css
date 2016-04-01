@@ -1,0 +1,63 @@
+/*
+COLORS:
+
+White------------------#FFFFFF
+
+Light Light Blue Gray--#C8CFD6
+Light Blue Gray--------#9FABB7
+Blue Gray--------------#535F6B
+Dark Blue Gray---------#2F363D
+
+Light Brown------------#BBBB77
+
+Light Greeen-----------#2F363D
+
+Red--------------------#FF0000
+Dark Red---------------#580000
+
+FORMAT:
+Styles for all selectors follow the format depicted in theformat_template.css
+file; Selector order follows the html layout
+*/
+
+/* page background */
+html {
+	background-color: #535F6B;
+}
+body {
+	width: 900px;
+
+	position: relative;
+
+	background-color: #FFFFFF;
+
+	border: 3px solid #2F363D;
+	border-radius: 10px;
+	margin: 15px auto 30px;
+
+	font-family: arial;
+}
+/* end page background */
+
+/* page header */
+h1 {
+	margin: 15px 0;
+
+	color: #2F363D;
+	text-align: center;
+	font-size: 40px;
+}
+
+/* used to clear float elements */
+.clear {
+	clear: both;
+}
+
+#login {
+	width: 900px;
+}
+
+#login > p {
+	width: 900px;
+	text-align: center;
+}
