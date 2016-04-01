@@ -13,11 +13,6 @@ $client->setClientSecret($config["google_client_secret"]);
 $client->setRedirectUri($config["google_client_redirect"]);
 $client->setScopes('email');
 
-//clear local access token on logout
-if (isset($_REQUEST['logout'])) {
-	unset($_SESSION['access_token']);
-}
-
 //authenticate code from auth2.0 callback and redirect to self
 if (isset($_GET['code'])) {
 	$client->authenticate($_GET['code']);
