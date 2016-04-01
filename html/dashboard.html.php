@@ -16,11 +16,6 @@
 	<body>
 		<div id="logout"><p><a href="logout.php">Logout</a></p></div>
 		<h1><?php echo($config['application_name']); ?></h1>
-		<?php
-		//dump the user data
-		if (isset($token_data)) {
-			var_dump($token_data);
-		}
-		?>
+		
 	</body>
 </html>
