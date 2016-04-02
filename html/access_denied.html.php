@@ -11,6 +11,7 @@
 
 		<!-- External CSS -->
 		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<link rel="stylesheet" type="text/css" href="css/access_denied.css" />
 	</head>
 	<body>
 		<h1><?php echo($config["application_name"]); ?></h1>

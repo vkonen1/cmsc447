@@ -1,0 +1,27 @@
+/*
+COLORS:
+
+White------------------#FFFFFF
+
+Light Light Blue Gray--#C8CFD6
+Light Blue Gray--------#9FABB7
+Blue Gray--------------#535F6B
+Dark Blue Gray---------#2F363D
+
+Light Brown------------#BBBB77
+
+Light Greeen-----------#2F363D
+
+Red--------------------#FF0000
+Dark Red---------------#580000
+
+FORMAT:
+Styles for all selectors follow the format depicted in theformat_template.css
+file; Selector order follows the html layout
+*/
+
+/* page background */
+body {
+	width: 450px;
+}
+/* end page background */
