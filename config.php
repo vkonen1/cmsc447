@@ -14,4 +14,5 @@ $config["google_client_id"] = "355947026096-ufg6tg2lu4vjuk0nltea6tqs3cht7vcv.app
 $config["google_client_secret"] = "rIOzTKJUxNnmbcaaU3V2qT7c";
 //the google api client redirect uri for Google+ Sign-in
 $config["google_client_redirect"] = "http://datahole.ddns.net/cmsc447/main/dashboard.php";
+$config["google_client_getid_redirect"] = "http://datahole.ddns.net/cmsc447/main/get_google_id.php";
 ?>
