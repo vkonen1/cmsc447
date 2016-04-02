@@ -6,6 +6,7 @@ if (!isset($token_data)) {
 	header("Location: index.php");
 }
 
+//get the google id from the token data
 $google_id = $token_data["payload"]["sub"];
 
 //mysql server connection info
@@ -35,7 +36,46 @@ if ($num_results < 1) {
 
 //get the user's info from the query
 $user_info = mysql_fetch_assoc($result);
-$username = str_replace("@umbc.edu", "", $user_info["Email"]);
+$email = $user_info["Email"];
+$username = str_replace("@umbc.edu", "", $email);
+
+//user status variables
+$admin = false;
+$instructor = false;
+$student = false;
+
+//determine if they are an administrator
+$query = "SELECT * FROM Administrators a WHERE a.GoogleId = " . $google_id;
+$result = mysql_query($query);
+if (!$result) {
+	die("Error: " . mysql_error() . "<br />Query: " . $query);
+}
+$num_results = mysql_num_rows($result);
+if ($num_results > 0) {
+	$admin = true;
+}
+
+//determine if they are an instructor
+$query = "SELECT * FROM Instructors i WHERE i.GoogleId = " . $google_id;
+$result = mysql_query($query);
+if (!$result) {
+	die("Error: " . mysql_error() . "<br />Query: " . $query);
+}
+$num_results = mysql_num_rows($result);
+if ($num_results > 0) {
+	$instructor = true;
+}
+
+//determine if they are a student
+$query = "SELECT * FROM Students s WHERE s.GoogleId = " . $google_id;
+$result = mysql_query($query);
+if (!$result) {
+	die("Error: " . mysql_error() . "<br />Query: " . $query);
+}
+$num_results = mysql_num_rows($result);
+if ($num_results > 0) {
+	$student = true;
+}
 
 require("html/dashboard.html.php");
 ?>

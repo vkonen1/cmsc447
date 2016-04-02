@@ -14,16 +14,16 @@ $client->setRedirectUri($config["google_client_redirect"]);
 $client->setScopes('email');
 
 //authenticate code from auth2.0 callback and redirect to self
-if (isset($_GET['code'])) {
-	$client->authenticate($_GET['code']);
-	$_SESSION['access_token'] = $client->getAccessToken();
-	$redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
-	header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
+if (isset($_GET["code"])) {
+	$client->authenticate($_GET["code"]);
+	$_SESSION["access_token"] = $client->getAccessToken();
+	$redirect = "http://" . $_SERVER["HTTP_HOST"] . $_SERVER["PHP_SELF"];
+	header("Location: " . filter_var($redirect, FILTER_SANITIZE_URL));
 }
 
 //set the access token for requests, otherwise generate an authentication url
-if (isset($_SESSION['access_token']) && $_SESSION['access_token']) {
-	$client->setAccessToken($_SESSION['access_token']);
+if (isset($_SESSION["access_token"]) && $_SESSION["access_token"]) {
+	$client->setAccessToken($_SESSION["access_token"]);
 	$token_data = $client->verifyIdToken()->getAttributes();
 } else {
 	$authUrl = $client->createAuthUrl();
