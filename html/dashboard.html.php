@@ -14,7 +14,7 @@
 		<link rel="stylesheet" type="text/css" href="css/dashboard.css" />
 	</head>
 	<body>
-		<div id="logout"><p><a href="logout.php">Logout</a></p></div>
+		<div id="logout" class="button"><p><a href="logout.php">Logout</a></p></div>
 		<h1><?php echo($config['application_name']); ?></h1>
 		<h2>Dashboard (<?php echo $username; ?>)</h2>
 	</body>
