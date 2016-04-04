@@ -33,6 +33,7 @@ if (!$result) {
 $num_results = mysql_num_rows($result);
 if ($num_results < 1) {
 	header("Location: access_denied.php");
+	exit;
 }
 
 $_SESSION["valid"] = true;
@@ -88,3 +89,4 @@ if ($_SESSION["admin"] || $_SESSION["instructor"] || $_SESSION["student"]) {
 
 //access denied if the user doesn't have a role
 header("Location: access_denied.php");
+exit;
