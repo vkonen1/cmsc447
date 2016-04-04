@@ -1,9 +1,15 @@
 <?php
 require("login.php");
 
-//redirect to home page if not logged in
+//redirect to home page if not logged in through google+
 if (!isset($token_data)) {
 	header("Location: index.php");
+	exit;
+}
+
+//redirect to dashboard if the session is already valid
+if (isset($_SESSION["valid"]) && $_SESSION["valid"]) {
+	header("Location: dashboard.php");
 	exit;
 }
 
@@ -36,6 +42,7 @@ if ($num_results < 1) {
 	exit;
 }
 
+//mark the session as valid
 $_SESSION["valid"] = true;
 
 //get the user's info from the query
@@ -81,12 +88,7 @@ if ($num_results > 0) {
 	$_SESSION["student"] = true;
 }
 
-//redirect to dashboard if the user has a role
-if ($_SESSION["admin"] || $_SESSION["instructor"] || $_SESSION["student"]) {
-	header("Location: dashboard.php");
-	exit;
-}
-
-//access denied if the user doesn't have a role
-header("Location: access_denied.php");
+//redirect to dashboard
+header("Location: dashboard.php");
 exit;
+?>
