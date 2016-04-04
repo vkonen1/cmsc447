@@ -1,9 +1,10 @@
 <?php
 require("login.php");
 
-//redirect to dashboard if user is logged in
+//redirect to validate_user if user is logged in through google+
 if (isset($token_data)) {
-	header("Location: dashboard.php");
+	header("Location: validate_user.php");
+	exit;
 }
 
 require("html/index.html.php");

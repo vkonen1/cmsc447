@@ -19,6 +19,7 @@ if (isset($_GET["code"])) {
 	$_SESSION["access_token"] = $client->getAccessToken();
 	$redirect = "http://" . $_SERVER["HTTP_HOST"] . $_SERVER["PHP_SELF"];
 	header("Location: " . filter_var($redirect, FILTER_SANITIZE_URL));
+	exit;
 }
 
 //set the access token for requests, otherwise generate an authentication url

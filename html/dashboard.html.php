@@ -17,11 +17,11 @@
 		<div id="logout" class="button"><p><a href="logout.php">Logout</a></p></div>
 		<h1><?php echo($config["application_name"]); ?></h1>
 		<h2>
-			Dashboard (<?php echo $username; ?>)
+			Dashboard (<?php echo $_SESSION["username"]; ?>)
 			<?php 
-			echo $admin ? " (Admin)" : "";
-			echo $instructor ? " (Instructor)" : "";
-			echo $student ? " (Student)" : "";
+			echo $_SESSION["admin"] ? " (Admin)" : "";
+			echo $_SESSION["instructor"] ? " (Instructor)" : "";
+			echo $_SESSION["student"] ? " (Student)" : "";
 			?>
 		</h2>
 	</body>
