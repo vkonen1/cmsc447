@@ -21,14 +21,14 @@ file; Selector order follows the html layout
 */
 
 /* manage button */
-#manage {
-	width: 900px;
+.manage-button {
+	width: 300px;
+
+	float:left;
 
 	margin: 0 0 15px 0;
 }
-#manage > p {
-	display:table-cell;
-
-	width: 900px;
+.manage-button > p {
+	width: 300px;
 }
 /* end manage button */

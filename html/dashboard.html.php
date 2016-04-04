@@ -24,5 +24,8 @@
 			echo $_SESSION["student"] ? " (Student)" : "";
 			?>
 		</h2>
+		<?php if ($_SESSION["admin"]) { ?>
+		<div id="manage" class="button"><p><a href="manage_users.php">Manage Users</a></p></div>
+		<?php } ?>
 	</body>
 </html>
