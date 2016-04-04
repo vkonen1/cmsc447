@@ -48,6 +48,7 @@ $_SESSION["valid"] = true;
 
 //get the user's info from the query
 $user_info = mysql_fetch_assoc($result);
+$_SESSION["user_id"] = $user_info["UserId"];
 
 //user status variables
 $_SESSION["admin"] = false;
@@ -55,7 +56,7 @@ $_SESSION["instructor"] = false;
 $_SESSION["student"] = false;
 
 //determine if they are an administrator
-$query = "SELECT * FROM Administrators a WHERE a.Email = '" . $_SESSION["email"] . "'";
+$query = "SELECT * FROM Administrators a WHERE a.UserId = '" . $_SESSION["user_id"] . "'";
 $result = mysql_query($query);
 if (!$result) {
 	die("Error: " . mysql_error() . "<br />Query: " . $query);
@@ -66,7 +67,7 @@ if ($num_results > 0) {
 }
 
 //determine if they are an instructor
-$query = "SELECT * FROM Instructors i WHERE i.Email = '" . $_SESSION["email"] . "'";
+$query = "SELECT * FROM Instructors i WHERE i.UserId = '" . $_SESSION["user_id"] . "'";
 $result = mysql_query($query);
 if (!$result) {
 	die("Error: " . mysql_error() . "<br />Query: " . $query);
@@ -77,7 +78,7 @@ if ($num_results > 0) {
 }
 
 //determine if they are a student
-$query = "SELECT * FROM Students s WHERE s.Email = '" . $_SESSION["email"] . "'";
+$query = "SELECT * FROM Students s WHERE s.UserId = '" . $_SESSION["user_id"] . "'";
 $result = mysql_query($query);
 if (!$result) {
 	die("Error: " . mysql_error() . "<br />Query: " . $query);
