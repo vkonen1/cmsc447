@@ -13,8 +13,9 @@ if (isset($_SESSION["valid"]) && $_SESSION["valid"]) {
 	exit;
 }
 
-//get the google id from the token data
-$_SESSION["google_id"] = $token_data["payload"]["sub"];
+//get the email from the token data
+$_SESSION["email"] = $token_data["payload"]["email"];
+$_SESSION["username"] = str_replace("@umbc.edu", "", $_SESSION["email"]);
 
 //mysql server connection info
 $server = "localhost";
@@ -29,7 +30,7 @@ if (!$mysql) {
 $db = mysql_select_db("cmsc447", $mysql);
 
 //query for the user data
-$query = "SELECT * FROM Users u WHERE u.GoogleId = " . $_SESSION["google_id"];
+$query = "SELECT * FROM Users u WHERE u.Email = '" . $_SESSION["email"] . "'";
 $result = mysql_query($query);
 if (!$result) {
 	die("Error: " . mysql_error() . "<br />Query: " . $query);
@@ -47,8 +48,6 @@ $_SESSION["valid"] = true;
 
 //get the user's info from the query
 $user_info = mysql_fetch_assoc($result);
-$_SESSION["email"] = $user_info["Email"];
-$_SESSION["username"] = str_replace("@umbc.edu", "", $_SESSION["email"]);
 
 //user status variables
 $_SESSION["admin"] = false;
@@ -56,7 +55,7 @@ $_SESSION["instructor"] = false;
 $_SESSION["student"] = false;
 
 //determine if they are an administrator
-$query = "SELECT * FROM Administrators a WHERE a.GoogleId = " . $_SESSION["google_id"];
+$query = "SELECT * FROM Administrators a WHERE a.Email = '" . $_SESSION["email"] . "'";
 $result = mysql_query($query);
 if (!$result) {
 	die("Error: " . mysql_error() . "<br />Query: " . $query);
@@ -67,7 +66,7 @@ if ($num_results > 0) {
 }
 
 //determine if they are an instructor
-$query = "SELECT * FROM Instructors i WHERE i.GoogleId = " . $_SESSION["google_id"];
+$query = "SELECT * FROM Instructors i WHERE i.Email = '" . $_SESSION["email"] . "'";
 $result = mysql_query($query);
 if (!$result) {
 	die("Error: " . mysql_error() . "<br />Query: " . $query);
@@ -78,7 +77,7 @@ if ($num_results > 0) {
 }
 
 //determine if they are a student
-$query = "SELECT * FROM Students s WHERE s.GoogleId = " . $_SESSION["google_id"];
+$query = "SELECT * FROM Students s WHERE s.Email = '" . $_SESSION["email"] . "'";
 $result = mysql_query($query);
 if (!$result) {
 	die("Error: " . mysql_error() . "<br />Query: " . $query);
