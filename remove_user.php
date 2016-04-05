@@ -27,7 +27,7 @@ if (!isset($management) || (!$_SESSION["admin"] && $management != "students") ||
 $user_id = $_GET["user_id"];
 
 //prevent user from removing themselves
-if ($_SESSION["user_id"] == $user_id) {
+if ($_SESSION["user_id"] == $user_id && $management == "administrators") {
 	header("Location: manage_users.php?" . $management);
 	exit;
 }
