@@ -68,3 +68,14 @@ file; Selector order follows the html layout
 	color: #2F363D;
 }
 /* end manage table */
+
+/* add users textarea */
+.add-users {
+	max-width: 850px;
+
+	padding: 5px;
+	border: 2px solid #2F363D;
+	border-radius: 5px;
+	margin: 0 0 15px 15px;
+}
+/* add users textarea */

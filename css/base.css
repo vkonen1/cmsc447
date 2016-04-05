@@ -41,6 +41,7 @@ body {
 
 p {
 	margin: 0 15px 15px 15px;
+	color: #2F363D;
 }
 
 /* buttons */
@@ -57,11 +58,9 @@ p {
 
 	margin: 0;
 
-	color: #2F363D;
 	text-align: center;
 }
 .button > p > a {
-
 	padding: 15px 30px;
 	border-radius: 10px;
 
@@ -77,6 +76,8 @@ p {
 	outline: 0;
 }
 .button > p > a:hover {
+	cursor: pointer;
+
 	background-color: #BBBB77;
 }
 /* end buttons */
@@ -129,4 +130,13 @@ h2 {
 /* used to clear float elements */
 .clear {
 	clear: both;
+}
+
+/* error elements */
+.error {
+	position: relative;
+	left: 15px;
+
+	color: #580000;
+	font-weight: bold;
 }

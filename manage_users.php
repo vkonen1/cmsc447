@@ -19,7 +19,7 @@ if (!$mysql) {
 //select the cmsc447 database
 $db = mysql_select_db("cmsc447", $mysql);
 
-//set the management type and query
+//set the management type
 if (isset($_REQUEST["administrators"])) {
 	$management = "administrators";
 } else if (isset($_REQUEST["instructors"])) {

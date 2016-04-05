@@ -46,8 +46,8 @@
 							<?php foreach ($user as $key => $value) { ?>
 								<td><?php echo $value; ?></td>
 							<?php } ?>
-							<td><a href="edit_user.php?<?php echo $user['UserId']; ?>">Edit</a></td>
-							<td><a href="remove_user.php?<?php echo $user['UserId']; ?>">Remove</a></td>
+							<td><a href="edit_user.php?user_id=<?php echo $user['UserId']; ?>">Edit</a></td>
+							<td><a href="remove_user.php?user_id=<?php echo $user['UserId']; ?>">Remove</a></td>
 						</tr>
 					<?php } while ($user = mysql_fetch_assoc($result)); ?>
 				</table>
