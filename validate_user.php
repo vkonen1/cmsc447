@@ -22,7 +22,7 @@ $mysql = mysql_connect($config["db_server"], $config["db_username"], $config["db
 if (!$mysql) {
 	die("Could not connect to the database: " . mysql_error());
 }
-//select the cmsc447 database
+//select the database
 $db = mysql_select_db($config["db_dbname"], $mysql);
 
 //query for the user data

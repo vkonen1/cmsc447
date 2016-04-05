@@ -79,3 +79,17 @@ file; Selector order follows the html layout
 	margin: 0 0 15px 15px;
 }
 /* add users textarea */
+
+.edit-user-label {
+	margin: 0 0 0 15px;
+	color: #2F363D;
+}
+.edit-user-field {
+	padding: 5px;
+	border: 2px solid #535F6B;
+	border-radius: 5px;
+	margin: 0 0 15px 15px;
+}
+.edit-user-field:focus {
+	border-color: #2F363D;
+}

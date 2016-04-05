@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		if (!$mysql) {
 			die("Could not connect to the database: " . mysql_error());
 		}
-		//select the cmsc447 database
+		//select the database
 		$db = mysql_select_db($config["db_dbname"], $mysql);
 
 		foreach ($user_emails as $user_email) {
