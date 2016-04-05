@@ -39,6 +39,10 @@ body {
 }
 /* end page background */
 
+p {
+	margin: 0 15px 15px 15px;
+}
+
 /* buttons */
 .button {
 	height: 50px;

@@ -24,7 +24,7 @@ file; Selector order follows the html layout
 .manage-button {
 	width: 300px;
 
-	float:left;
+	float: left;
 
 	margin: 0 0 15px 0;
 }
@@ -32,3 +32,39 @@ file; Selector order follows the html layout
 	width: 300px;
 }
 /* end manage button */
+
+/* add button */
+.add-button {
+	float: left;
+
+	margin: 0 0 15px 15px;
+}
+/* end add button */
+
+/* manage table */
+.manage-table {
+	width: 870px;
+
+	background-color: #C8CFD6;
+
+	border-collapse: collapse;
+	margin: 0 0 15px 15px;
+
+	color: #535F6B;
+}
+.manage-table > tbody > tr > th,
+.manage-table > tbody > tr > td {
+	padding: 5px;
+	border: 2px solid #2F363D;
+
+	text-align: left;
+}
+.manage-table > tbody > tr > td > a {
+	color: inherit;
+	text-decoration: none;
+	font-weight: bold;
+}
+.manage-table > tbody > tr > td > a:hover {
+	color: #2F363D;
+}
+/* end manage table */

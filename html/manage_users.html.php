@@ -18,14 +18,41 @@
 		<div id="logout" class="button"><p><a href="logout.php">Logout</a></p></div>
 		<h1><?php echo($config["application_name"]); ?></h1>
 		<h2>Manage Users (<?php echo $_SESSION["username"]; ?>) (Admin)</h2>
-		<?php
-		if (isset($management_html)) {
-			include($management_html);
-		} else { ?>
-			<div class="button manage-button"><p><a href="manage_users.php?administrators">Manage Admins</a></p></div>
-			<div class="button manage-button"><p><a href="manage_users.php?instructors">Manage Instructors</a></p></div>
+
+		<?php if (!isset($management)) { ?>
+			<?php if ($_SESSION["admin"]) { ?>
+				<div class="button manage-button"><p><a href="manage_users.php?administrators">Manage Admins</a></p></div>
+				<div class="button manage-button"><p><a href="manage_users.php?instructors">Manage Instructors</a></p></div>
+			<?php } ?>
 			<div class="button manage-button"><p><a href="manage_users.php?students">Manage Students</a></p></div>
+		<?php } else { ?>
+			<div class="button add-button"><p><a href="add_users.php?<?php echo $management ?>">Add <?php echo ucfirst($management); ?></a></p></div>
 			<div class="clear"></div>
+			<?php if ($num_results == 0) { ?>
+				<p><b>There are no <?php echo $management ?> in the system.</b></p>
+			<?php } else { 
+				$user = mysql_fetch_assoc($result);
+				?>
+				<table class="manage-table">
+					<tr>
+						<?php foreach ($user as $key => $value) { ?>
+							<th><?php echo $key; ?></th>
+						<?php } ?>
+						<th></th>
+						<th></th>
+					</tr>
+					<?php do { ?>
+						<tr>
+							<?php foreach ($user as $key => $value) { ?>
+								<td><?php echo $value; ?></td>
+							<?php } ?>
+							<td><a href="edit_user.php?<?php echo $user['UserId']; ?>">Edit</a></td>
+							<td><a href="remove_user.php?<?php echo $user['UserId']; ?>">Remove</a></td>
+						</tr>
+					<?php } while ($user = mysql_fetch_assoc($result)); ?>
+				</table>
+			<?php } ?>
 		<?php } ?>
+		<div class="clear"></div>
 	</body>
 </html>
