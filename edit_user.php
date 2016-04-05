@@ -1,5 +1,6 @@
 <?php
 require("session.php");
+require("functions.php");
 
 //redirect to dashboard if not admin or instructor
 if (!($_SESSION["admin"] || $_SESSION["instructor"])) {
@@ -42,12 +43,65 @@ if (!$result) {
 }
 $num_results = mysql_num_rows($result);
 if ($num_results < 1) {
-	header("Location: manage_users?" . $management);
+	header("Location: manage_users.php?" . $management);
 	exit;
 }
 
 //get the user's information
 $user_info = mysql_fetch_assoc($result);
+//initalize the errors
+foreach ($user_info as $key => $value) {
+	if ($key != "UserId" && $key != "DateAdded") {
+		$user_infoErr[$key] = "";
+	}
+}
+$error = false;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	//validate the fields
+	foreach ($user_info as $key => $value) {
+		if ($key != "UserId" && $key != "DateAdded") {
+			if (empty($_POST[$key])) {
+				$user_infoErr[$key] = "Required";
+				$error = true;
+			}
+
+			//clean the post data field
+			$user_info[$key] = test_input($_POST[$key]);
+
+			//validate the email field
+			if ($key == "Email") {
+				if (!filter_var($user_info[$key], FILTER_VALIDATE_EMAIL)) {
+					$user_infoErr[$key] = "Invalid email address";
+					$error = true;
+				}
+			}
+		}
+	}
+
+	//update table entry if no errors in post data validation
+	if (!$error) {
+		$query = "UPDATE Users SET ";
+		$first = true;
+		foreach ($user_info as $key => $value) {
+			if ($key != "UserId" && $key != "DateAdded") {
+				if (!$first) {
+					$query .= ", ";
+				}
+				$query .= $key . " = '" . $value . "'";
+				$first = false;
+			}
+		}
+		$query .= " WHERE UserId = '" . $user_id . "'";
+
+		$result = mysql_query($query);
+		if (!$result) {
+			die("Error: " . mysql_error() . "<br />Query: " . $query);
+		}
+
+		header("Location: manage_users.php?" . $management);
+	}
+}
 
 require("html/edit_user.html.php");
 ?>

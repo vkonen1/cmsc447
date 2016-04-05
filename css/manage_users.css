@@ -80,9 +80,14 @@ file; Selector order follows the html layout
 }
 /* add users textarea */
 
+/* edit user form */
 .edit-user-label {
 	margin: 0 0 0 15px;
+	
 	color: #2F363D;
+}
+.edit-user-error {
+	left: 0px;
 }
 .edit-user-field {
 	padding: 5px;
@@ -93,3 +98,4 @@ file; Selector order follows the html layout
 .edit-user-field:focus {
 	border-color: #2F363D;
 }
+/* end edit user form */

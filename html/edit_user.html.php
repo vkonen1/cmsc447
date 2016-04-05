@@ -24,7 +24,8 @@
 				if ($key == "UserId" || $key == "DateAdded") { ?>
 					<p><b><?php echo $key; ?>:</b> <?php echo $value; ?></p>
 				<?php } else { ?>
-					<label class="edit-user-label" for="<?php echo $key; ?>"><b><?php echo $key; ?></b></label><br />
+					<label class="edit-user-label" for="<?php echo $key; ?>"><b><?php echo $key; ?></b></label>
+					<span class="error edit-user-error"><?php echo $user_infoErr[$key]; ?></span><br />
 					<input class="edit-user-field" type="text" name="<?php echo $key; ?>" value="<?php echo $value; ?>" />
 				<?php }
 			} ?>
