@@ -51,17 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	//add the users to the database with the given role if no errors
 	if (empty($usersErr)) {
-		//mysql server connection info
-		$server = "localhost";
-		$username = "cmsc447";
-		$password = "CMSC447group";
 		//connect to the mysql server
-		$mysql = mysql_connect($server, $username, $password);
+		$mysql = mysql_connect($config["db_server"], $config["db_username"], $config["db_password"]);
 		if (!$mysql) {
 			die("Could not connect to the database: " . mysql_error());
 		}
 		//select the cmsc447 database
-		$db = mysql_select_db("cmsc447", $mysql);
+		$db = mysql_select_db($config["db_dbname"], $mysql);
 
 		foreach ($user_emails as $user_email) {
 			//clean it up
