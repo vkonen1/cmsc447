@@ -35,7 +35,7 @@ if (!$mysql) {
 $db = mysql_select_db($config["db_dbname"], $mysql);
 
 //check if the user can be edited (exists in the appropriate table)
-$query = "SELECT u.* FROM Users u INNER JOIN " . ucfirst($management) . " ut ON u.UserId = ut.UserId";
+$query = "SELECT u.* FROM Users u INNER JOIN " . ucfirst($management) . " ut ON u.UserId = ut.UserId WHERE u.UserId = '" . $user_id . "'";
 $result = mysql_query($query);
 if (!$result) {
 	die("Error: " . mysql_error() . "<br />Query: " . $query);
