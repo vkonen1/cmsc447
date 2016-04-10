@@ -12,6 +12,7 @@ if (!($_SESSION["admin"] || $_SESSION["instructor"])) {
 //form value and error
 $name = "";
 $nameErr = "";
+$courseDescription = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	//validate the form input
@@ -20,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	} else {
 		//clean it up
 		$name = test_input($_POST["courses"]);
+		$courseDescription = test_input($_POST["description"]);
 		//turn into an array
 		//$user_emails = explode("\n", $users);
 		
@@ -49,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$num_results = 0;
 	$id = $_SESSION["user_id"];
 	if ($num_results < 1) {
-		$query = "INSERT INTO Courses (CourseId, InstructorId, CourseName, CourseDesc, DateModified) VALUES (NULL, '$id', '$name', 'N/A', CURRENT_TIMESTAMP)";
+		$query = "INSERT INTO Courses (CourseId, InstructorId, CourseName, CourseDesc, DateModified) VALUES (NULL, '$id', '$name', '$courseDescription', CURRENT_TIMESTAMP)";
 		$result = mysql_query($query);
 		if (!$result) {
 			die("Error: " . mysql_error() . "<br />Query: " . $query);

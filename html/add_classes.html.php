@@ -22,6 +22,8 @@
 		<span class="error"><?php echo $nameErr; ?></span>
 		<form id="add-users" method="post" action="add_classes.php">
 			<textarea class="add-users" cols="40" rows="10" name="courses" wrap="physical"><?php echo $name; ?></textarea>
+			<label for="description"><p><b>Please include a description of the course: </b></p></label>
+			<textarea class="add-users" cols="40" rows="10" id = "description" name="description" wrap="physical"><?php echo $name; ?></textarea>
 			<div class="clear"></div>
 			<div class="button add-button"><p><a onclick="$('#add-users').submit()">Add Classes</a></p></div>
 		</form>
