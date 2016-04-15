@@ -27,5 +27,8 @@
 		<?php if ($_SESSION["admin"]) { ?>
 		<div id="manage" class="button"><p><a href="manage_users.php">Manage Users</a></p></div>
 		<?php } ?>
+		<?php if ($_SESSION["instructor"]) { ?>
+		<div id="manage" class="button"><p><a href="manage_classes.php">Manage Classes</a></p></div>
+		<?php } ?>
 	</body>
 </html>
