@@ -149,3 +149,20 @@ h3 {
 	color: #580000;
 	font-weight: bold;
 }
+
+/* p listing elements */
+.listing {
+	margin-bottom: 0;
+}
+.listing > a {
+	color: #535F6B;
+	text-decoration: none;
+	font-size: 18px;
+	font-weight: bold;
+}
+.listing > a:hover {
+	color: #2F363D;
+}
+.sublisting {
+	margin-top: 0;
+}
