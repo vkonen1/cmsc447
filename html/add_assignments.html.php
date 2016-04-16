@@ -17,15 +17,15 @@
 		<div id="dashboard" class="button"><p><a href="dashboard.php">Dashboard</a></p></div>
 		<div id="logout" class="button"><p><a href="logout.php">Logout</a></p></div>
 		<h1><?php echo($config["application_name"]); ?></h1>
-		<h2>Add Classes (<?php echo $_SESSION["username"]; ?>) (Instructor)</h2>
-		<p><b>Please provide a single course name.</b></p>
-		<span class="error"><?php echo $nameErr; ?></span>
-		<form id="add-users" method="post" action="add_classes.php">
-			<textarea class="add-users" cols="40" rows="10" name="courses" wrap="physical"><?php echo $name; ?></textarea>
-			<label for="description"><p><b>Please include a description of the course: </b></p></label>
-			<textarea class="add-users" cols="40" rows="10" id = "description" name="description" wrap="physical"><?php echo $name; ?></textarea>
+		<h2>Add Assignment (<?php echo $_SESSION["username"]; ?>) (Instructor)</h2>
+		<p><b>Please provide an assignment name.</b></p>
+		<span class="error"><?php echo($nameErr . $scriptErr . $descriptionErr); ?></span>
+		<form id="add-users" method="post" enctype="multipart/form-data" action="add_assignments.php?course_id=<?php echo $course_id; ?>">
+			<textarea class="add-users" cols="40" rows="5" name="assignment_title" wrap="physical"><?php echo $name; ?></textarea>
+			<input type="file" name="file_description" />
+			<input type="file" name="script" />
 			<div class="clear"></div>
-			<div class="button add-button"><p><a onclick="$('#add-users').submit()">Add Class</a></p></div>
+			<div class="button add-button"><p><a onclick="$('#add-users').submit()">Add Assignment</a></p></div>
 		</form>
 		<div class="clear"></div>
 	</body>
