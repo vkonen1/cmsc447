@@ -165,4 +165,8 @@ h3 {
 }
 .sublisting {
 	margin-top: 0;
+	margin-bottom: 0;
+}
+.sublisting-end {
+	margin-bottom: 15px;
 }

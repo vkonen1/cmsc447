@@ -24,7 +24,8 @@
         <?php } else { 
             while ($course = mysql_fetch_assoc($result)) { ?>
                 <p class="listing"><a href="view_class.php?course_id=<?php echo $course['CourseId']; ?>"><?php echo $course['CourseName']; ?></a></p>
-                <p class="sublisting"><?php echo $course["CourseDesc"]; ?></p>
+                <p class="sublisting"><b>Instructor:</b> <?php echo $course["Name"]; ?></p>
+                <p class="sublisting sublisting-end"><?php echo $course["CourseDesc"]; ?></p>
             <?php } ?>            
         <?php } ?>
         <div class="clear"></div>
