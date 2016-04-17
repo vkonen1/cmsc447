@@ -135,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					}
 					$pdfIdArray = mysql_fetch_assoc($pdfIdResult);
 					$pdfId = $pdfIdArray['DocumentId'];
-					rename($uploadDesc, $uploaddir . $pdfId . '.pdf');
+					rename($uploadDesc, $uploaddir . $assignmentId . '_' . $id . '_' . $pdfId . '.pdf');
 				}
 				
 				// add python entry to database
@@ -154,7 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					}
 					$pythonIdArray = mysql_fetch_assoc($pythonIdResult);
 					$pythonId = $pythonIdArray['DocumentId'];
-					rename($uploadScript, $uploaddir . $pythonId . '.py');
+					rename($uploadScript, $uploaddir . $assignmentId . '_' . $id . '_' . $pythonId . '.py');
 				}
 
 				

@@ -1,6 +1,5 @@
 <?php
 require("session.php");
-require("functions.php");
 
 //redirect to dashboard if not admin or instructor
 if (!($_SESSION["admin"] || $_SESSION["instructor"])) {
@@ -8,9 +7,11 @@ if (!($_SESSION["admin"] || $_SESSION["instructor"])) {
 	exit;
 }
 
-//get the user id of the user to edit from the user type table
+//get the user id of the user to remove from the user type table
+$id = $_GET["assignment_id"];
 $course = $_GET["course_id"];
-$id = $_SESSION["user_id"];
+$uploaddir = 'uploads/';
+$documents = $uploaddir . $id . '*';
 
 //connect to the mysql server
 $mysql = mysql_connect($config["db_server"], $config["db_username"], $config["db_password"]);
@@ -19,6 +20,7 @@ if (!$mysql) {
 }
 //select the database
 $db = mysql_select_db($config["db_dbname"], $mysql);
+
 
 //query for the course
 $query = "SELECT * FROM Courses c WHERE CourseId = '$course'";
@@ -43,19 +45,21 @@ if ($courseInfo["InstructorId"] != $id) {
     exit;
 }
 
-$query = "SELECT * FROM Assignments u WHERE u.CourseId ='$course'";
-$query2 = "SELECT * FROM Courses u WHERE u.CourseId = '$course'";
+
+
+$query = "DELETE FROM Assignments WHERE AssignmentId = '$id'";
 $result = mysql_query($query);
-$result2 = mysql_query($query2);
 if (!$result) {
 	die("Error: " . mysql_error() . "<br />Query: " . $query);
 }
-if (!$result2) {
-	die("Error: " . mysql_error() . "<br />Query: " . $query2);
+else {
+	#$query = "DELETE FROM Documents WHERE AssignmentId = '$id'";
+	#$result = mysql_query($query);
+	array_map('unlink', glob($documents));
 }
-#meep
-#var_dump($result2);
-$num_results = mysql_num_rows($result);
 
-require("html/edit_class.html.php");
+
+//back to the edit class
+header("Location: edit_class.php?course_id=" . $course);
+exit;
 ?>
