@@ -22,8 +22,17 @@
 		<span class="error"><?php echo($nameErr . $scriptErr . $descriptionErr); ?></span>
 		<form id="add-users" method="post" enctype="multipart/form-data" action="add_assignments.php?course_id=<?php echo $course_id; ?>">
 			<textarea class="add-users" cols="40" rows="5" name="assignment_title" wrap="physical"><?php echo $name; ?></textarea>
+			<br />
+			<label for="file_description">Description (.pdf)</label>
+			<br />
 			<input type="file" name="file_description" />
+			<br />
+			<br />
+			<label for="script">Python Script (.py)</label>
+			<br />
 			<input type="file" name="script" />
+			<br />
+			<br />
 			<div class="clear"></div>
 			<div class="button add-button"><p><a onclick="$('#add-users').submit()">Add Assignment</a></p></div>
 		</form>
