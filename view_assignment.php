@@ -60,7 +60,27 @@ if ($num_results < 1) {
 //store the class
 $course = mysql_fetch_assoc($result);
 
-/* need to get the description document */
+//get the assignment description document
+$query = "SELECT * FROM Documents d WHERE AssignmentId = '" . $assignment_id . 
+    "' AND UserId = '" . $course["InstructorId"] . "' AND DocumentType = 'pdf' 
+    ORDER BY DateAdded Desc";
+$result = mysql_query($query);
+if (!$result) {
+    die("Error: " . mysql_error() . "<br />Query: " . $query);
+}
 
+//store that path and its existence
+$num_results = mysql_num_rows($result);
+$assignment_desc = false;
+if ($num_results > 0) {
+    $assignment_desc_doc = mysql_fetch_assoc($result);
+    $assignment_desc_filename = $assignment_desc_doc["AssignmentId"] . "_" . 
+        $assignment_desc_doc["UserId"] . "_" . $assignment_desc_doc["DocumentId"] . 
+        "." . $assignment_desc_doc["DocumentType"];
+    $assignment_desc_path = "uploads/" . $assignment_desc_filename;
+    if (file_exists($assignment_desc_path)) {
+        $assignment_desc = true;
+    }
+}
 
 require("html/view_assignment.html.php");

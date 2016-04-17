@@ -19,7 +19,13 @@
         <h2>View Assignment (<?php echo $_SESSION["username"]; ?>) (Student)</h2>
         <h3><?php echo $course["CourseName"]; ?> - <?php echo $assignment["AssignmentName"]; ?></h3>
 
-        
+        <p class="listing sublisting-end">
+            <?php if ($assignment_desc) { ?>
+                <a href="<?php echo $assignment_desc_path; ?>" target="_blank">Assignment Description</a>
+            <?php } else { ?>
+                No Assignment Description
+            <?php } ?>
+        </p>
         <div class="clear"></div>
     </body>
 </html>
