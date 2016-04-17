@@ -1,8 +1,8 @@
 <?php
 require("session.php");
 
-//redirect to dashboard if not admin or instructor
-if (!($_SESSION["admin"] || $_SESSION["instructor"])) {
+//redirect to dashboard if not admin
+if (!$_SESSION["admin"]) {
 	header("Location: dashboard.php");
 	exit;
 }
@@ -25,12 +25,6 @@ if (isset($_REQUEST["administrators"])) {
 }
 
 if (isset($management)) {
-	//instructors can only manage students
-	if (!$_SESSION["admin"] && $management != "students") {
-		header("Location: manage_users.php");
-		exit;
-	}
-
 	//query to get all the users of type management
 	$query = "SELECT u.* FROM Users u INNER JOIN " . ucfirst($management) . " ut ON u.UserId = ut.UserId";
 	$result = mysql_query($query);

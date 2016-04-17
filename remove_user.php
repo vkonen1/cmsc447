@@ -1,8 +1,8 @@
 <?php
 require("session.php");
 
-//redirect to dashboard if not admin or instructor
-if (!($_SESSION["admin"] || $_SESSION["instructor"])) {
+//redirect to dashboard if not admin
+if (!$_SESSION["admin"]) {
 	header("Location: dashboard.php");
 	exit;
 }
@@ -16,9 +16,9 @@ if (isset($_REQUEST["administrators"])) {
 	$management = "students";
 }
 
-//some type must be removed instructors can only remove students
+//some type must be removed
 //user_id must be set
-if (!isset($management) || (!$_SESSION["admin"] && $management != "students") || !isset($_GET["user_id"])) {
+if (!isset($management) || !isset($_GET["user_id"])) {
 	header("Location: manage_users.php");
 	exit;
 }

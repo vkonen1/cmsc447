@@ -2,8 +2,8 @@
 require("session.php");
 require("functions.php");
 
-//redirect to dashboard if not admin or instructor
-if (!($_SESSION["admin"] || $_SESSION["instructor"])) {
+//redirect to dashboard if not admin
+if (!$_SESSION["admin"]) {
 	header("Location: dashboard.php");
 	exit;
 }
@@ -17,8 +17,8 @@ if (isset($_REQUEST["administrators"])) {
 	$management = "students";
 }
 
-//some type must be added instructors can only add students
-if (!isset($management) || (!$_SESSION["admin"] && $management != "students")) {
+//some type must be added
+if (!isset($management)) {
 	header("Location: manage_users.php");
 	exit;
 }
