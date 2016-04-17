@@ -16,6 +16,7 @@ $nameErr = "";
 $scriptErr = "";
 $descriptionErr = "";
 $course_id = $_GET["course_id"];
+$id = $_SESSION["user_id"];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	//validate the form input
@@ -28,8 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 	
 	$uploaddir = 'uploads/';
-	$uploadDesc = $uploaddir . basename($_FILES['file_description']['name']);
-	$uploadScript = $uploaddir . basename($_FILES['script']['name']);
+	$uploadDesc = $uploaddir . $id . basename($_FILES['file_description']['name']);
+	$uploadScript = $uploaddir . $id. basename($_FILES['script']['name']);
 	
 	echo $uploadDesc;
 	//var_dump($_FILES['file_description']);
@@ -103,7 +104,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$result = mysql_query($query);
 		
 		$num_results = mysql_num_rows($result);
-		$id = $_SESSION["user_id"];
 		
 		if ($num_results < 1) {
 			$query = "INSERT INTO Assignments (AssignmentId, AssignmentName, CourseId, DateModified) VALUES (NULL, '$name', '$course_id', CURRENT_TIMESTAMP)";
@@ -120,16 +120,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				$assignmentId = $idArray['AssignmentId'];
 				
 				// add pdf entry to database
-				$pdfInsert = "INSERT INTO Documents (DocumentId, DocumentName, DocumentType, AssignmentId, UserId, DateAdded) VALUES (NULL, '$name', 'pdf', '$assignmentId', '$id', CURRENT_TIMESTAMP)";
+				$pdfInsert = "INSERT INTO Documents (DocumentId, DocumentType, AssignmentId, UserId, DateAdded) VALUES (NULL, 'pdf', '$assignmentId', '$id', CURRENT_TIMESTAMP)";
 				$pdfResult = mysql_query($pdfInsert);
 				if (!$pdfResult) {
 					die("Error: " . mysql_error() . "<br />Query: " . $pdfInsert);
 				}
-				$pythonInsert = "INSERT INTO Documents (DocumentId, DocumentName, DocumentType, AssignmentId, UserId, DateAdded) VALUES (NULL, '$name', 'py', '$assignmentId', '$id', CURRENT_TIMESTAMP)";
+				else {
+					// get pdf file document id
+					$pdfIdQuery = "SELECT * FROM Documents u WHERE u.AssignmentId = '$assignmentId' AND u.UserId = '$id' AND u.DocumentType = 'pdf' ORDER BY DateAdded DESC";
+					$pdfIdResult = mysql_query($pdfIdQuery);
+					if (!$pdfIdResult)
+					{
+						die("Error: " . mysql_error() . "<br />Query: " . $pdfIdQuery);
+					}
+					$pdfIdArray = mysql_fetch_assoc($pdfIdResult);
+					$pdfId = $pdfIdArray['DocumentId'];
+					rename($uploadDesc, $uploaddir . $pdfId . '.pdf');
+				}
+				
+				// add python entry to database
+				$pythonInsert = "INSERT INTO Documents (DocumentId, DocumentType, AssignmentId, UserId, DateAdded) VALUES (NULL, 'py', '$assignmentId', '$id', CURRENT_TIMESTAMP)";
 				$pythonResult = mysql_query($pythonInsert);
 				if (!$pythonResult) {
 					die("Error: " . mysql_error() . "<br />Query: " . $pythonInsert);
 				}
+				else {
+					// get python file Document Id
+					$pythonIdQuery = "SELECT * FROM Documents u WHERE u.AssignmentId = '$assignmentId' AND u.UserId = '$id' AND u.DocumentType = 'py' ORDER BY DateAdded DESC";
+					$pythonIdResult = mysql_query($pythonIdQuery);
+					if (!$pdfIdResult)
+					{
+						die("Error: " . mysql_error() . "<br />Query: " . $pythonIdQuery);
+					}
+					$pythonIdArray = mysql_fetch_assoc($pythonIdResult);
+					$pythonId = $pythonIdArray['DocumentId'];
+					rename($uploadScript, $uploaddir . $pythonId . '.py');
+				}
+
+				
 				#echo $idArray['AssignmentId'];
 			}
 		}
