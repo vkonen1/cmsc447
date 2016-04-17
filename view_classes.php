@@ -15,7 +15,9 @@ if (!$mysql) {
 //select the database
 $db = mysql_select_db($config["db_dbname"], $mysql);
 
-$query = "SELECT c.*, u.* FROM Courses c INNER JOIN Users u ON c.InstructorId = u.UserId INNER JOIN Users_Courses uc ON c.CourseId = uc.CourseId WHERE uc.UserId = '" . $_SESSION["user_id"] . "'";
+$query = "SELECT c.*, u.* FROM Courses c INNER JOIN Users u ON c.InstructorId = 
+    u.UserId INNER JOIN Users_Courses uc ON c.CourseId = uc.CourseId WHERE uc.UserId = '" 
+    . $_SESSION["user_id"] . "'";
 $result = mysql_query($query);
 if (!$result) {
     die("Error: " . mysql_error() . "<br />Query: " . $query);

@@ -19,6 +19,7 @@
         <h1><?php echo($config["application_name"]); ?></h1>
         <h2>View Class (<?php echo $_SESSION["username"]; ?>) (Student)</h2>
         <h3><?php echo $course["CourseName"]; ?> - <?php echo $course["Name"]; ?></h3>
+        <p><?php echo $course["CourseDesc"]; ?></p>
 
         <?php if ($num_results == 0) { ?>
             <p><b>There are no assignments listed for this class.</b></p>
