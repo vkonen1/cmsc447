@@ -62,4 +62,5 @@ $course = mysql_fetch_assoc($result);
 
 /* need to get the description document */
 
+
 require("html/view_assignment.html.php");

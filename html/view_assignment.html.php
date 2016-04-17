@@ -11,7 +11,6 @@
 
         <!-- External CSS -->
         <link rel="stylesheet" type="text/css" href="css/base.css" />
-        <link rel="stylesheet" type="text/css" href="css/view_assignment.css" />
     </head>
     <body>
         <div id="dashboard" class="button"><p><a href="dashboard.php">Dashboard</a></p></div>

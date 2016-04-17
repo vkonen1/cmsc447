@@ -14,7 +14,7 @@
 
 		<!-- External CSS -->
 		<link rel="stylesheet" type="text/css" href="css/base.css" />
-		<link rel="stylesheet" type="text/css" href="css/manage_users.css" />
+		<link rel="stylesheet" type="text/css" href="css/management.css" />
 	</head>
 	<body>
 		<div id="dashboard" class="button"><p><a href="dashboard.php">Dashboard</a></p></div>
@@ -22,6 +22,8 @@
 		<h1><?php echo($config["application_name"]); ?></h1>
 		<h2><?php echo $courseName; ?></h2>
 
+		<div class="button add-button"><p><a href="manage_students.php?course_id=<?php echo $courseInfo["CourseId"];?> ">Manage Students</a></p></div>
+		<div class="clear"></div>
 		<div class="button add-button"><p><a href="add_assignments.php?course_id=<?php echo $courseInfo["CourseId"];?> ">Add Assignments</a></p></div>
 		<div class="clear"></div>
 		<?php if ($num_results == 0) { ?>

@@ -11,7 +11,7 @@
 
 		<!-- External CSS -->
 		<link rel="stylesheet" type="text/css" href="css/base.css" />
-		<link rel="stylesheet" type="text/css" href="css/manage_users.css" />
+		<link rel="stylesheet" type="text/css" href="css/management.css" />
 	</head>
 	<body>
 		<div id="dashboard" class="button"><p><a href="dashboard.php">Dashboard</a></p></div>
