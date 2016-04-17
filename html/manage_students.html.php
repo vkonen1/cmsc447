@@ -20,25 +20,29 @@
         <h2>Manage Students (<?php echo $_SESSION["username"]; ?>) (Instructor)</h2>
         <h3><?php echo $course["CourseName"]; ?></h3>
         <div class="button add-button"><p><a href="add_students.php?course_id=<?php echo $course_id; ?>">Add Students</a></p></div>
-        <?php
-        $student = mysql_fetch_assoc($result);
-        ?>
-        <table class="manage-table">
-            <tr>
-                <?php foreach ($student as $key => $value) { ?>
-                    <th><?php echo $key; ?></th>
-                <?php } ?>
-                <th></th>
-            </tr>
-            <?php do { ?>
+        <div class="clear"></div>
+        <?php if ($num_results == 0) { ?>
+            <p><b>There are no students in this class.</b></p>
+        <?php } else {
+            $student = mysql_fetch_assoc($result);
+            ?>
+            <table class="manage-table">
                 <tr>
                     <?php foreach ($student as $key => $value) { ?>
-                        <td><?php echo $value; ?></td>
+                        <th><?php echo $key; ?></th>
                     <?php } ?>
-                    <td><a href="remove_student.php?course_id=<?php echo $course_id; ?>&amp;user_id=<?php echo $student['UserId']; ?>">Remove</a></td>
+                    <th></th>
                 </tr>
-            <?php } while ($student = mysql_fetch_assoc($result)); ?>
-        </table>
+                <?php do { ?>
+                    <tr>
+                        <?php foreach ($student as $key => $value) { ?>
+                            <td><?php echo $value; ?></td>
+                        <?php } ?>
+                        <td><a href="remove_student.php?course_id=<?php echo $course_id; ?>&amp;user_id=<?php echo $student['UserId']; ?>">Remove</a></td>
+                    </tr>
+                <?php } while ($student = mysql_fetch_assoc($result)); ?>
+            </table>
+        <?php } ?>
         <div class="clear"></div>
     </body>
 </html>
