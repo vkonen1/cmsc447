@@ -41,6 +41,14 @@ if ($num_results < 1) {
 //store the assignment
 $assignment = mysql_fetch_assoc($result);
 
+//store the submission limit
+$submission_limit = $assignment["SubmissionLimit"];
+//default to 3
+if ($submission_limit < 1) {
+    $submission_limit = 3;
+}
+$attempts_remaining = $submission_limit;
+
 //get the class information for the class the assignment belongs to
 $query = "SELECT c.*, u.* FROM Courses c INNER JOIN Users u ON c.InstructorId = 
     u.UserId INNER JOIN Users_Courses uc ON c.CourseId = uc.CourseId WHERE uc.UserId = '" 
@@ -59,6 +67,11 @@ if ($num_results < 1) {
 
 //store the class
 $course = mysql_fetch_assoc($result);
+
+$over_limit = "";
+if (isset($_REQUEST["over_limit"])) {
+    $over_limit = "Cannot grade submission. No attempts remaining.";
+}
 
 //get the assignment description document
 $query = "SELECT * FROM Documents d WHERE AssignmentId = '" . $assignment_id . 

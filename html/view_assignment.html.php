@@ -28,12 +28,14 @@
             <?php } ?>
         </p>
         <hr />
+        <span class="error"><?php echo $over_limit; ?></span>
         <p class="listing sublisting-end"><b>Previous Uploads</b></p>
         <?php if ($num_results < 1) { ?>
             <p class="listing sublisting-end">You have not uploaded any files.</p>
         <?php } else {
             $submission_num = 1;
             while ($upload = mysql_fetch_assoc($result)) { 
+                //display the uploaded submission if it exists
                 $upload_filename = $upload["AssignmentId"] . "_" . $upload["UserId"] . 
                     "_" . $upload["DocumentId"] . "." . $upload["DocumentType"];
                 $upload_path = "uploads/" . $upload_filename;
@@ -42,13 +44,16 @@
                     <p class="listing sublisting-end">
                     <?php if (is_null($upload["Score"])) { ?>
                         Not Graded <a href="grade_submission.php?assignment_id=<?php echo $assignment_id; ?>&amp;document_id=<?php echo $upload['DocumentId'] ?>">(GRADE)</a>
-                    <?php } else { ?>
+                    <?php } else { 
+                        $attempts_remaining--;
+                        ?>
                         Score: <b><?php echo $upload["Score"]; ?></b>
                     <?php } ?>
                     </p>
                 <?php }
             }
         } ?>
+        <p class="listing"><b>Attempt Limit:</b> <?php echo $submission_limit ?> <b>|</b> <b>Attempts Remaining:</b> <?php echo $attempts_remaining; ?></p>
         <hr />
         <p class="listing sublisting-end"><b>Upload A Submission Attempt</b></p>
         <form id="upload-attempt" method="post" enctype="multipart/form-data" action="view_assignment.php?assignment_id=<?php echo $assignment_id; ?>">

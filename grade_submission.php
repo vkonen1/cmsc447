@@ -51,6 +51,32 @@ if (!is_null($student_script["Score"])) {
     exit;
 }
 
+//get the submission limit
+$query = "SELECT * FROM Assignments WHERE AssignmentId = '$assignment_id'";
+$result = mysql_query($query);
+if (!$result) {
+    die("Error: " . mysql_error() . "<br />Query: " . $query);
+}
+$assignment = mysql_fetch_assoc($result);
+$submission_limit = $assignment["SubmissionLimit"];
+$attempts_remaining = $submission_limit;
+
+//determine if it has been exceeded
+$query = "SELECT * FROM Documents WHERE AssignmentId = '$assignment_id' AND UserId = '" . $_SESSION["user_id"] . "'";
+$result = mysql_query($query);
+if (!$result) {
+    die("Error: " . mysql_error() . "<br />Query: " . $query);
+}
+while ($submission = mysql_fetch_assoc($result)) {
+    if (!is_null($submission["Score"])) {
+        $attempts_remaining--;
+    }
+}
+if ($attempts_remaining < 1) {
+    header("Location: view_assignment.php?over_limit&assignment_id=" . $assignment_id);
+    exit;
+}
+
 //query for the instructor's script
 $query = "SELECT d.* FROM Documents d INNER JOIN Instructors i ON d.UserId = i.UserId 
     INNER JOIN Assignments a ON d.AssignmentId = a.AssignmentId 
