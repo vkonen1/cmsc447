@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$num_results = mysql_num_rows($result);
 		
 		if ($num_results < 1) {
-			$query = "INSERT INTO Assignments (AssignmentId, AssignmentName, CourseId, DateModified, Limit) VALUES (NULL, '$name', '$course_id', CURRENT_TIMESTAMP, '$limit')";
+			$query = "INSERT INTO Assignments (AssignmentId, AssignmentName, CourseId, DateModified, SubmissionLimit) VALUES (NULL, '$name', '$course_id', CURRENT_TIMESTAMP, '$limit')";
 			$result = mysql_query($query);
 			if (!$result) {
 				die("Error: " . mysql_error() . "<br />Query: " . $query);
