@@ -122,9 +122,9 @@ if (!file_exists($student_script_path)) {
 }
 
 
-//run the scripts
-$instructor_exec = "python " . $instructor_script_path;
-$student_exec = "python " . $student_script_path;
+//run the scripts with a 30 seconds timeout
+$instructor_exec = "timeout 30s python " . $instructor_script_path;
+$student_exec = "timeout 30s python " . $student_script_path;
 $instructor_output = shell_exec($instructor_exec);
 $student_output = shell_exec($student_exec);
 
