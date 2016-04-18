@@ -148,10 +148,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     die("Error: " . mysql_error() . "<br />Query: " . $query);
                 }
             }
-
-            header("Location: manage_students.php?course_id=" . $course_id);
-            exit;
         }
+        header("Location: manage_students.php?course_id=" . $course_id);
+        exit;
     }
 }
 
