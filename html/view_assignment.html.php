@@ -41,7 +41,7 @@
                     <p class="listing"><a href="<?php echo $upload_path; ?>" target="_blank">Submission #<?php echo $submission_num++; ?></a></p>
                     <p class="listing sublisting-end">
                     <?php if (is_null($upload["Score"])) { ?>
-                        Not Graded <a href="grade_submission.php?document_id=<?php echo $upload['DocumentId'] ?>">(GRADE)</a>
+                        Not Graded <a href="grade_submission.php?assignment_id=<?php echo $assignment_id; ?>&amp;document_id=<?php echo $upload['DocumentId'] ?>">(GRADE)</a>
                     <?php } else { ?>
                         Score: <b><?php echo $upload["Score"]; ?></b>
                     <?php } ?>
