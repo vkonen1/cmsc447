@@ -37,12 +37,14 @@
 						<th><?php echo $key; ?></th>
 					<?php } ?>
 					<th></th>
+					<th></th>
 				</tr>
 				<?php do { ?>
 					<tr>
 						<?php foreach ($assignment as $key => $value) { ?>
 							<td><?php echo $value; ?></td>
 						<?php } ?>
+						<td><a href="submissions_assignment.php?assignment_id=<?php echo $assignment['AssignmentId']; ?>&amp;course_id=<?php echo $course; ?>">Submissions</a></td>
 						<td><a href="remove_assignment.php?assignment_id=<?php echo $assignment['AssignmentId']; ?>&amp;course_id=<?php echo $course; ?>">Remove</a></td>
 					</tr>
 				<?php } while ($assignment = mysql_fetch_assoc($result)); ?>

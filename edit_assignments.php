@@ -12,7 +12,6 @@ if (!($_SESSION["admin"] || $_SESSION["instructor"])) {
 //form value and error
 $error = false;
 $name = "";
-$limit = '-1';
 $nameErr = "";
 $scriptErr = "";
 $descriptionErr = "";
@@ -24,18 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (empty($_POST["assignment_title"])) {
 		$nameErr = "Please provide an assignment title";
 		$error = true;
-	} else if (empty($_POST["limit"])){
-		$nameErr = "Please provide a submission limit";
-		$error = true;
 	} else {
 		//clean it up
 		$name = test_input($_POST["assignment_title"]);
-		$limit = test_input($_POST["limit"]);
-		
-		if (!preg_match("/^\d*$/", $limit)) {
-			$nameErr = "Invalid limit number";
-			$error = true;
-		}
 	}
 	
 	$uploaddir = 'uploads/';
@@ -116,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$num_results = mysql_num_rows($result);
 		
 		if ($num_results < 1) {
-			$query = "INSERT INTO Assignments (AssignmentId, AssignmentName, CourseId, DateModified, Limit) VALUES (NULL, '$name', '$course_id', CURRENT_TIMESTAMP, $limit)";
+			$query = "INSERT INTO Assignments (AssignmentId, AssignmentName, CourseId, DateModified) VALUES (NULL, '$name', '$course_id', CURRENT_TIMESTAMP)";
 			$result = mysql_query($query);
 			if (!$result) {
 				die("Error: " . mysql_error() . "<br />Query: " . $query);

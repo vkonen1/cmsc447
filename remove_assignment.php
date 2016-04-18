@@ -40,7 +40,7 @@ if ($num_results < 1) {
 $courseInfo = mysql_fetch_assoc($result);
 
 //make sure this course is the user's course
-if ($courseInfo["InstructorId"] != $id) {
+if ($courseInfo["InstructorId"] != $_SESSION["user_id"]) {
     header("Location: manage_classes.php");
     exit;
 }
