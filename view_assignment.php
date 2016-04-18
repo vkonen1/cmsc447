@@ -63,7 +63,7 @@ $course = mysql_fetch_assoc($result);
 //get the assignment description document
 $query = "SELECT * FROM Documents d WHERE AssignmentId = '" . $assignment_id . 
     "' AND UserId = '" . $course["InstructorId"] . "' AND DocumentType = 'pdf' 
-    ORDER BY DateAdded Desc";
+    ORDER BY DateAdded DESC";
 $result = mysql_query($query);
 if (!$result) {
     die("Error: " . mysql_error() . "<br />Query: " . $query);
@@ -82,5 +82,57 @@ if ($num_results > 0) {
         $assignment_desc = true;
     }
 }
+
+$scriptErr = "";
+//process the uploaded file
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $uploaddir = 'uploads/';
+    $uploadScript = $uploaddir . $_SESSION["user_id"] . basename($_FILES['script']['name']);
+
+    $scriptArray = explode(".", $_FILES['script']['name']);
+
+    // validate python file
+    if (empty($scriptArray) || $scriptArray == False) {
+        $scriptErr = "Python Error: Please upload a program file (.py)";
+    } else if (end($scriptArray) != "py") {
+        $scriptErr = "Python Error: Program file must be of file type .py";
+    } else if ($_FILES['script']['size'] > 100000) {
+        $scriptErr = "Python Error: Python file exceeds 100kB";
+    } else {
+        if (!move_uploaded_file($_FILES['script']['tmp_name'], $uploadScript)) {
+            $scriptErr = "Python Error: File is invalid, and was not uploaded.";
+        }
+    }
+
+    if ($scriptErr == "") {
+        // add python entry to database
+        $pythonInsert = "INSERT INTO Documents (DocumentId, DocumentType, AssignmentId, UserId, DateAdded) VALUES (NULL, 'py', '$assignment_id', '" . $_SESSION["user_id"] . "', CURRENT_TIMESTAMP)";
+        $pythonResult = mysql_query($pythonInsert);
+        if (!$pythonResult) {
+            die("Error: " . mysql_error() . "<br />Query: " . $pythonInsert);
+        }
+
+        // get python file Document Id
+        $pythonIdQuery = "SELECT * FROM Documents d WHERE d.AssignmentId = '$assignment_id' AND d.UserId = '" . $_SESSION["user_id"] . "' AND d.DocumentType = 'py' ORDER BY DateAdded DESC";
+        $pythonIdResult = mysql_query($pythonIdQuery);
+        if (!$pythonIdResult) {
+            die("Error: " . mysql_error() . "<br />Query: " . $pythonIdQuery);
+        }
+        $pythonIdArray = mysql_fetch_assoc($pythonIdResult);
+        $pythonId = $pythonIdArray["DocumentId"];
+        rename($uploadScript, $uploaddir . $assignment_id . '_' . $_SESSION["user_id"] . '_' . $pythonId . '.py');
+    }
+}
+
+//get the previous uploads by the student
+$query = "SELECT * FROM Documents d WHERE AssignmentId = '" . $assignment_id . 
+    "' AND UserId = '" . $_SESSION["user_id"] . "' ORDER BY DateAdded ASC";
+$result = mysql_query($query);
+if (!$result) {
+    die("Error: " . mysql_error() . "<br />Query: " . $query);
+}
+
+//store the number of results
+$num_results = mysql_num_rows($result);
 
 require("html/view_assignment.html.php");
